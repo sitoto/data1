@@ -40,8 +40,10 @@ class Spider
         puts image_url = image_url.gsub("..", "http://www.tonglujia.com")
         desc = pro_doc.css("table")[2].text()
         name = name.gsub('/','-')
+        back = image_url.split('.')[-1]
+        pic_name = "#{name}.#{back}"
 
-        download_images(@i.to_s, name, image_url)
+        download_images(@i.to_s, pic_name, image_url)
         create_file_to_write(@i.to_s, name)
         @file_to_write.puts(desc)
 
