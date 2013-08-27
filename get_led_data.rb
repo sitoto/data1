@@ -23,7 +23,8 @@ class Spider
     get_list
   end
   def get_list
-    1.upto(26).each do |n|
+   create_file_to_write("report", "report")
+   1.upto(26).each do |n|
       puts url  = "http://www.tonglujia.com/cn/Products.asp?keywords=&Xcol=1&bcol=103&page=#{n}"
       doc = fetch_doc(url)
       doc.xpath('//td[@rowspan="2"]').each do |item|
@@ -42,10 +43,12 @@ class Spider
         name = name.gsub('/','-')
         back = image_url.split('.')[-1]
         pic_name = "#{name}.#{back}"
+        @file_to_write.puts("#{@i}\t#{name}\t#{}")
 
-        download_images(@i.to_s, pic_name, image_url)
-        create_file_to_write(@i.to_s, name)
-        @file_to_write.puts(desc)
+
+#        download_images(@i.to_s, pic_name, image_url)
+#        create_file_to_write(@i.to_s, name)
+#        @file_to_write.puts(desc)
 
         @i += 1
 
